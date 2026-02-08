@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://bynpbscys6arb"]
+
+[node name="Exit" type="Button" unique_id=1523225687]
+text = "Exit Game"

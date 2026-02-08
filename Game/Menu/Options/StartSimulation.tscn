@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cl2hw5kbhi2b8"]
+
+[node name="StartSimulation" type="Button" unique_id=901704912]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Start Simulation"
