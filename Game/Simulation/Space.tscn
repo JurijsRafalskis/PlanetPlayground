@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bfqvjq80a6q2u"]
+
+[ext_resource type="Script" uid="uid://b10tw3o6ph04a" path="res://Game/Simulation/Space.cs" id="1_ywt7j"]
+
+[node name="Space" type="Node2D" unique_id=1462972160]
+script = ExtResource("1_ywt7j")

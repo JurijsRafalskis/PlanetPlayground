@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://cl2hw5kbhi2b8"]
 
+[ext_resource type="Script" uid="uid://cm6fh7eo6toku" path="res://Game/Menu/Options/StartSimulation.cs" id="1_028v1"]
+
 [node name="StartSimulation" type="Button" unique_id=901704912]
 offset_right = 8.0
 offset_bottom = 8.0
 text = "Start Simulation"
+script = ExtResource("1_028v1")

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://di8fdogiublkr"]
+
+[ext_resource type="Script" uid="uid://bmhemnffrdivc" path="res://Game/MainLoop.cs" id="1_oko7u"]
+[ext_resource type="PackedScene" uid="uid://cu45ybebdqqlq" path="res://Game/Menu/MainMenu.tscn" id="1_to4bi"]
+[ext_resource type="PackedScene" uid="uid://bfqvjq80a6q2u" path="res://Game/Simulation/Space.tscn" id="2_7g2ow"]
+[ext_resource type="Script" uid="uid://bwb1upedn7gqp" path="res://Game/Menu/MainMenu.cs" id="3_bjwlu"]
+
+[node name="MainLoop" type="Node" unique_id=1217998456]
+script = ExtResource("1_oko7u")
+
+[node name="MainMenu" parent="." unique_id=457876770 instance=ExtResource("1_to4bi")]
+offset_left = 492.0
+offset_top = 235.0
+offset_right = 625.0
+offset_bottom = 336.0
+alignment = 1
+script = ExtResource("3_bjwlu")
+
+[node name="Space" parent="." unique_id=1462972160 instance=ExtResource("2_7g2ow")]
