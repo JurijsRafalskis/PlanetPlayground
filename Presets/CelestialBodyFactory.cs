@@ -14,7 +14,7 @@ public static class CelestialBodyFactory
     public static CelestialBody Create(Vector2 postion, Vector2 velocity, float mass)
     {
         var body = Create();
-        body.Position = postion;
+        body.PhysicalPosition = postion;
         body.Velocity = velocity;
         body.Mass = mass;
         return body;

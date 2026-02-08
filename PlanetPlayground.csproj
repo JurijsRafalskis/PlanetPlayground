@@ -5,6 +5,9 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="Presets\PresetData\SimpleStar.json" />
+    <Content Include="Presets\PresetData\StarThree.json" />
+    <Content Include="Presets\PresetData\ThreeBodies.json" />
     <Content Include="Presets\PresetData\TwoBodies.json" />
   </ItemGroup>
 </Project>

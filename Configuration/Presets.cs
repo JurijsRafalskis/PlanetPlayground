@@ -24,6 +24,7 @@ public static class Presets
     {
         new ("Two bodies", "TwoBodies"),
         new ("Three bodies", "ThreeBodies"),
-        new ("Star and Body", "SimpleStar")
+        new ("Star and body", "SimpleStar"),
+        new ("Star and three bodies", "StarThree")
     };
 }

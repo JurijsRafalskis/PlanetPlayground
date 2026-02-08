@@ -25,8 +25,8 @@ public static class PresetFactory
         foreach (var preset in presetValues)
         {
             result.Add(CelestialBodyFactory.Create(
-                new Vector2(width * preset.PlacementX / 100, height * preset.PlacementY / 100),
-                new Vector2(width * preset.VelocityX / 100, height * preset.VelocityY / 100),
+                new Vector2(preset.PlacementX, preset.PlacementY),
+                new Vector2(preset.VelocityX, preset.VelocityY),
                 preset.Mass
             ));
         }

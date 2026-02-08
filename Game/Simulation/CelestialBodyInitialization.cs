@@ -9,11 +9,11 @@ namespace PlanetPlayground.Game.Simulation;
 public class CelestialBodyInitialization
 {
     /// <summary>
-    /// Initial position by coordinate X in % of screen.
+    /// Initial position by physical coordinate in X assis. Visible values 0-10000.
     /// </summary>
     public float PlacementX { get; set; }
     /// <summary>
-    /// Initial position by coordinate Y in % of screen.
+    /// Initial position by physical coordinate in Y assis. Visible values 0-10000.
     /// </summary>
     public float PlacementY { get; set; }
     /// <summary>
@@ -21,11 +21,11 @@ public class CelestialBodyInitialization
     /// </summary>
     public float Mass { get; set; }
     /// <summary>
-    /// Initial velocity by coordinate X in % of screen.
+    /// Initial velocity by X assis.
     /// </summary>
     public float VelocityX { get; set; }
     /// <summary>
-    /// Initial velocity by coordinate Y in % of screen.
+    /// Initial velocity by Y assis.
     /// </summary>
     public float VelocityY { get; set; }
 }
