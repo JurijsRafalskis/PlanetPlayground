@@ -8,5 +8,5 @@ namespace PlanetPlayground.Configuration;
 
 public static class PhysicsConstants
 {
-    public const float GravitationalConstant = 1;
+    public const float GravitationalConstant = 250000;
 }

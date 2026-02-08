@@ -3,16 +3,16 @@ using System;
 
 public partial class MainLoop : Node
 {
-	/// <summary>
-	/// Always retains the menu object, to attach and reattach.
-	/// </summary>
-	private MainMenu menu { get; set; }
+	private MainMenu Menu { get; set; }
+	private PresetSelectionMenu SelectionMenu { get; set; }
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
-		menu = FindChild(nameof(MainMenu)) as MainMenu;
-	}
+		Menu = FindChild(nameof(MainMenu)) as MainMenu;
+		SelectionMenu = FindChild(nameof(PresetSelectionMenu)) as PresetSelectionMenu;
+		HideSelectionMenu();
+    }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta) { }
@@ -22,19 +22,32 @@ public partial class MainLoop : Node
 		//Returning menu if the escape is pressed.
         if (@event is InputEventKey eventKey && eventKey.Pressed && eventKey.Keycode == Key.Escape)
 		{
-			ShowMenu();
+			HideSelectionMenu();
+            ShowMainMenu();
 		}
     }
 
-	public void HideMenu()
+	public void HideMainMenu()
 	{
-		if (menu.GetParent() == null) return;
-		RemoveChild(menu);
+		if (Menu.GetParent() == null) return;
+		RemoveChild(Menu);
 	}
 
-	public void ShowMenu()
+	public void ShowMainMenu()
 	{
 		if (FindChild(nameof(MainMenu)) is MainMenu) return;
-		AddChild(menu);
+		AddChild(Menu);
 	}
+
+	public void HideSelectionMenu()
+	{
+        if(SelectionMenu.GetParent() == null) return;
+        RemoveChild(SelectionMenu);
+    }
+
+	public void ShowSelectionMenu()
+	{
+        if (FindChild(nameof(PresetSelectionMenu)) is PresetSelectionMenu) return;
+        AddChild(SelectionMenu);
+    }
 }

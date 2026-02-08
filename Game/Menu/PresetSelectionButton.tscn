@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://6kcysjw7y6lb"]
+
+[ext_resource type="Script" uid="uid://bgb1dqirto6yn" path="res://Game/Menu/PresetSelectionButton.cs" id="1_esey0"]
+
+[node name="PresetSelectionButton" type="Button" unique_id=1281414636]
+script = ExtResource("1_esey0")

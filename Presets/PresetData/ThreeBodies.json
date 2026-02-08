@@ -1,0 +1,23 @@
+[
+  {
+    "PlacementX": 33,
+    "PlacementY": 33,
+    "VelocityX": 1,
+    "VelocityY": 3,
+    "Mass": 1
+  },
+  {
+    "PlacementX": 66,
+    "PlacementY": 33,
+    "VelocityX": -1,
+    "VelocityY": -3,
+    "Mass": 1
+  },
+  {
+    "PlacementX": 50,
+    "PlacementY": 66,
+    "VelocityX": 2,
+    "VelocityY": -2,
+    "Mass": 1
+  }
+]

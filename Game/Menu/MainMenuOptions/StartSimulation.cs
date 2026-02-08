@@ -15,21 +15,7 @@ public partial class StartSimulation : Button
     {
 		//Initializing new game
 		var mainLoop = FindParent(nameof(MainLoop)) as MainLoop;
-        var space = mainLoop.GetNode<Space>(nameof(Space));
-		mainLoop.HideMenu();
-
-        //Clean currently existing nodes.
-        var exisitngChildren = space.GetChildren().OfType<CelestialBody>();
-        foreach (var child in exisitngChildren)
-        {
-			space.RemoveChild(child);
-			child.QueueFree();
-        }
-		//Loading the preset.
-		var preset = TwoBodyPreset.CreateTwoBodyPreset(space);
-		foreach(var body in preset)
-		{
-			space.AddChild(body);
-        }
+		mainLoop.HideMainMenu();
+		mainLoop.ShowSelectionMenu();
     }
 }

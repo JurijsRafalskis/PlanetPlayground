@@ -18,6 +18,7 @@ public partial class CelestialBody : Node2D
 	public override void _Ready() {
 		//Might be neccessary to call full recalc of those on creation?
 		Acceleration = CalculateAcceleration();
+		//Introduction of new Celestial body requires full reclculation of all in moment accelerations.
         foreach (var item in GetExistingSpaceBodies())
         {
 			item.RecalculateAcceleration();
@@ -26,6 +27,7 @@ public partial class CelestialBody : Node2D
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta) {
+		//GD.Print($"Process called for {this.GetType().Name}. Current Position: {Position}. Current Velocity: {Velocity}. Current Acceleration = {Acceleration}.");
 		//Find out if we can separate drawing frame from physics frame.
 		//Updating acceleration. Possibly  take an average acceleration too?
 		float time = (float)delta;
@@ -53,7 +55,7 @@ public partial class CelestialBody : Node2D
 			//Skipping this body by reference.
 			if (body == this) continue;
 			var distanceVector = body.Position - this.Position;
-			var accelerationScalar = PhysicsConstants.GravitationalConstant * body.Mass /** this.Mass*/ * distanceVector.LengthSquared();
+			var accelerationScalar = PhysicsConstants.GravitationalConstant * body.Mass /** this.Mass*/ / distanceVector.LengthSquared();
 			var accelerationVector = distanceVector.Normalized() * accelerationScalar;
             accumulate += accelerationVector;
         }
