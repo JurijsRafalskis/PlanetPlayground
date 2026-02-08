@@ -19,7 +19,6 @@ public partial class PresetSelectionMenu : VBoxContainer
 			button.Text = preset.Label;
 			AddChild(button);
         }
-        Position = (GetViewportRect().Size - this.Size) / 2;
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

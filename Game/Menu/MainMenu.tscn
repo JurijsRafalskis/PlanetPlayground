@@ -1,20 +1,18 @@
 [gd_scene format=3 uid="uid://cu45ybebdqqlq"]
 
-[ext_resource type="PackedScene" uid="uid://bynpbscys6arb" path="res://Game/Menu/Options/Exit.tscn" id="1_c7fot"]
-[ext_resource type="PackedScene" uid="uid://cl2hw5kbhi2b8" path="res://Game/Menu/Options/StartSimulation.tscn" id="1_gjes2"]
-[ext_resource type="PackedScene" uid="uid://cqtmogbgkilrc" path="res://Game/Menu/Options/Options.tscn" id="2_fiaye"]
-[ext_resource type="Script" uid="uid://wmi0gyyodqkp" path="res://Game/Menu/Options/Exit.cs" id="4_ltk7b"]
+[ext_resource type="PackedScene" uid="uid://cl2hw5kbhi2b8" path="res://Game/Menu/MainMenuOptions/StartSimulation.tscn" id="1_fiaye"]
+[ext_resource type="PackedScene" uid="uid://cqtmogbgkilrc" path="res://Game/Menu/MainMenuOptions/Options.tscn" id="2_ltk7b"]
+[ext_resource type="PackedScene" uid="uid://bynpbscys6arb" path="res://Game/Menu/MainMenuOptions/Exit.tscn" id="3_hxc3x"]
 
-[node name="MainMenu" type="VBoxContainer" unique_id=457876770]
+[node name="MainMenu" type="VBoxContainer" unique_id=887284782]
 offset_right = 133.0
 offset_bottom = 101.0
 
-[node name="StartSimulation" parent="." unique_id=901704912 instance=ExtResource("1_gjes2")]
+[node name="StartSimulation" parent="." unique_id=901704912 instance=ExtResource("1_fiaye")]
 layout_mode = 2
 
-[node name="Options" parent="." unique_id=796854805 instance=ExtResource("2_fiaye")]
+[node name="Options" parent="." unique_id=796854805 instance=ExtResource("2_ltk7b")]
 layout_mode = 2
 
-[node name="Exit" parent="." unique_id=1523225687 instance=ExtResource("1_c7fot")]
+[node name="Exit" parent="." unique_id=1523225687 instance=ExtResource("3_hxc3x")]
 layout_mode = 2
-script = ExtResource("4_ltk7b")
