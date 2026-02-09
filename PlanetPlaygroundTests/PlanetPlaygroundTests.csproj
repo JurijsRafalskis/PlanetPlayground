@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Graphics\Sprites\Temporary\" />
+    <Folder Include="TemporaryTestResults\" />
   </ItemGroup>
 
 </Project>

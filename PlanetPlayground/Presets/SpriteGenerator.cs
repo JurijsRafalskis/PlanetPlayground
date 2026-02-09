@@ -15,13 +15,16 @@ public class SpriteGenerator
     public SpriteGenerator(CelestialBodyInitialization initialData)
     {
         Seed = initialData.SpriteSeed ?? Guid.NewGuid().ToString();
+        Mass = initialData.Mass > 0 ? initialData.Mass : throw new ArgumentOutOfRangeException(nameof(initialData), $"{nameof(initialData.Mass)} is either 0 or negative.");
     }
 
+    /// <summary>
+    /// Generates random png sprite from provided seed.
+    /// </summary>
+    /// <returns>Stream of created sprite</returns>
     public Stream Generate()
     {
-        //TODO: find out how to do this outside of Windows, so target could be more global...
-        using var bmp = new Bitmap(20, 20);
-        using Graphics graphics = Graphics.FromImage(bmp);
+        //TODO: find out how to do generation outside of Windows, so target could be more global...
 
         //Seeding random here, to ensure same results for same seed.
         Random = new(Seed.GetHashCode());
@@ -58,7 +61,7 @@ public class SpriteGenerator
         SolidBrush brush = new(color);
         graphics.FillClosedCurve(brush, new Point[]{ new(size / 2, size / 2) });
         MemoryStream stream = new();
-        bmp.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
+        bmp.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
         stream.Seek(0, SeekOrigin.Begin);
         return stream;
     }
