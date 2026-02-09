@@ -15,8 +15,6 @@ public class SpriteGenerator
     public SpriteGenerator(CelestialBodyInitialization initialData)
     {
         Seed = initialData.SpriteSeed ?? Guid.NewGuid().ToString();
-        //Do that on generation, not here.
-        
     }
 
     public Stream Generate()
