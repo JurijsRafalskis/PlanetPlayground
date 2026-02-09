@@ -28,4 +28,9 @@ public class CelestialBodyInitialization
     /// Initial velocity by Y assis.
     /// </summary>
     public float VelocityY { get; set; }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public string SpriteSeed { get; set; }
 }

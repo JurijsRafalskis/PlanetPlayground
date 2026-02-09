@@ -1,6 +1,6 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanetPlayground", "PlanetPlayground.csproj", "{56B55BD7-C769-45C9-8900-EF63D1D53C5D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanetPlayground", "PlanetPlayground/PlanetPlayground.csproj", "{56B55BD7-C769-45C9-8900-EF63D1D53C5D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

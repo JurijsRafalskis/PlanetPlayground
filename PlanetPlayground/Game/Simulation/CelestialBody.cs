@@ -43,7 +43,12 @@ public partial class CelestialBody : Node2D
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta) {}
+	public override void _Process(double delta) {
+        /*var texture = new ImageTexture();
+        texture.SetImage();
+        var image = new Image();
+        image.loa*/
+    }
 
     public override void _PhysicsProcess(double delta)
     {
