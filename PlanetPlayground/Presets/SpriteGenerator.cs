@@ -1,7 +1,10 @@
 using PlanetPlayground.Game.Simulation;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
+using System.Linq;
 using System.Net.NetworkInformation;
 
 namespace PlanetPlayground.Presets;
@@ -28,21 +31,15 @@ public class SpriteGenerator
         //TODO: find out how to do generation outside of Windows, so target could be more global...
         //Seeding random here, to ensure same results for same seed.
         Random = new(Seed.GetHashCode());
-        if (Mass < 5)
+        return Mass switch
         {
-            return DrawTerrestrial();
-        }
-        if (Mass < 20)
-        {
-            return DrawGas();
-        }
-        else
-        {
-            return DrawStar();
-        }
+            < 5 => DrawTerrestrial(),
+            < 20 => DrawGas(),
+            _ => DrawStar(),
+        };
     }
 
-    private Stream DrawTerrestrial()
+    private MemoryStream DrawTerrestrial()
     {
         //Allows sizes between 10 and 20 for mass values from 1 to 5;
         int size =  Convert.ToInt32(Math.Floor(10 + 6.21 * Math.Log(Mass)));
@@ -56,29 +53,92 @@ public class SpriteGenerator
             _ => Color.Wheat // Imposible Fallback
         };
         //Pen pen = new(color);
-        SolidBrush brush = new(color);
-        graphics.FillEllipse(brush, 0, 0, size - 1, size - 1);
         //Try texture brush?
-        graphics.FillClosedCurve(brush, [new(0, 0)]);
+        using SolidBrush brush = new(color);
+        graphics.FillEllipse(brush, 0, 0, size - 1, size - 1);
+        return BmpToMemoryStream(bmp);
+    }
+
+    private MemoryStream DrawGas()
+    {
+        //Allows sizes between 25 and 70 for mass values from 5 to 20;
+        int size = Convert.ToInt32(20 + 20 * Math.Cbrt(Mass - 5));
+        int sliceCount = 3 + (Random.Next() % 6); //Add possiblity of monocolor?
+        using var bmp = new Bitmap(size, size);
+        using var graphics = Graphics.FromImage(bmp);
+        //Gets 'sliceCount' random non repeating colors
+        //Do we really want non repeating?
+        var colors = GetNonRepeatingRandomNumbers(10, sliceCount).Select(GetGasColor).ToList();
+        for(int i = 0; i < sliceCount; i++)
+        {
+            using var sliceBmp = new Bitmap(size, size / sliceCount + 1);
+            using var slice = Graphics.FromImage(sliceBmp);
+            using SolidBrush brush = new(colors[i]);
+            int sliceCoordinates = Convert.ToInt32(Math.Round(1.0 * i * size / sliceCount, MidpointRounding.ToNegativeInfinity));
+            slice.FillEllipse(brush, 0, 0 - sliceCoordinates, size - 1, size - 1);
+            graphics.DrawImage(sliceBmp, 0, sliceCoordinates);
+        }
+
+        return BmpToMemoryStream(bmp);
+    }
+
+    private MemoryStream DrawStar()
+    {
+        int size = Convert.ToInt32(55 +   65 * Math.Pow(Mass - 20, 0.25));
+        using var bmp = new Bitmap(size, size);
+        using var graphics = Graphics.FromImage(bmp);
+        Color primaryColor = Mass switch
+        {
+            < 32 => Color.OrangeRed,
+            < 44 => Color.GreenYellow,
+            < 56 => Color.WhiteSmoke,
+            < 80 => Color.LightSkyBlue,
+            _ => Color.DeepSkyBlue
+        };
+        double gradient = 1 - 0.6 * Random.NextDouble();
+        Color secondaryColor = Color.FromArgb(primaryColor.A, (int)(primaryColor.R * gradient), (int)(primaryColor.G * gradient), (int)(primaryColor.B * gradient));
+        using GraphicsPath path = new();
+        path.AddEllipse(0, 0, size - 1, size - 1);
+        using PathGradientBrush gradientBrush = new(path);
+        gradientBrush.CenterColor = primaryColor;
+        gradientBrush.SurroundColors = [secondaryColor];
+        graphics.FillEllipse(gradientBrush, 0, 0, size - 1, size - 1);
+        return BmpToMemoryStream(bmp);
+    }
+
+    private Color GetGasColor(int number) => number switch
+    {
+        0 => Color.RebeccaPurple,
+
+        1 => Color.DarkGray,
+        2 => Color.Magenta,
+        3 => Color.DeepPink,
+        4 => Color.DarkGreen,
+        5 => Color.DarkViolet,
+        6 => Color.PaleTurquoise,
+        7 => Color.CadetBlue,
+        8 => Color.DarkOrange,
+        9 => Color.Azure,
+        _ => Color.BlueViolet
+    };
+
+    private MemoryStream BmpToMemoryStream(Bitmap image)
+    {
         MemoryStream stream = new();
-        bmp.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+        image.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
         stream.Seek(0, SeekOrigin.Begin);
         return stream;
     }
 
-    private Stream DrawGas()
+    private List<int> GetNonRepeatingRandomNumbers(int max, int count)
     {
-        using var bmp = new Bitmap(20, 20);
-        using var graphics = Graphics.FromImage(bmp);
+        HashSet<int> result = new();
+        do
+        {
+            int random = Random.Next() % max;
+            if (!result.Contains(random)) result.Add(random);
+        } while (result.Count < count);
 
-        return Stream.Null;
-    }
-
-    private Stream DrawStar()
-    {
-        using var bmp = new Bitmap(20, 20);
-        using var graphics = Graphics.FromImage(bmp);
-
-        return Stream.Null;
+        return [.. result];
     }
 }

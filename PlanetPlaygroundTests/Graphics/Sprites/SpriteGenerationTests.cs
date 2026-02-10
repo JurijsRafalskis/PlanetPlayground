@@ -12,17 +12,50 @@ namespace PlanetPlaygroundTests.Graphics.Sprites;
 public class SpriteGenerationTests
 {
     [TestMethod]
-    public void Should_be_able_to_generate_sprite()
+    public void Should_be_able_to_generate_terrestrial_sprite()
     {
-        CelestialBodyInitialization initialization = new()
+        CelestialBodyInitialization init = new ()
         {
             Mass = 1
         };
-        SpriteGenerator generator = new(initialization);
+
+        SpriteGenerator generator = new(init);
         using var generatedSprite = generator.Generate();
         Assert.IsNotNull(generatedSprite);
         Assert.IsTrue(generatedSprite.CanSeek);
-        using var output = new FileStream($"{Environment.CurrentDirectory}/../../../TemporaryTestResults/Should_be_able_to_generate_sprite.png", FileMode.Create);
+        using var output = new FileStream($"{Environment.CurrentDirectory}/../../../TemporaryTestResults/{nameof(Should_be_able_to_generate_terrestrial_sprite)}.png", FileMode.Create);
+        generatedSprite.CopyTo(output);
+    }
+
+    [TestMethod]
+    public void Should_be_able_to_generate_gas_giant_sprite()
+    {
+        CelestialBodyInitialization init = new()
+        {
+            Mass = 8
+        };
+
+        SpriteGenerator generator = new(init);
+        using var generatedSprite = generator.Generate();
+        Assert.IsNotNull(generatedSprite);
+        Assert.IsTrue(generatedSprite.CanSeek);
+        using var output = new FileStream($"{Environment.CurrentDirectory}/../../../TemporaryTestResults/{nameof(Should_be_able_to_generate_gas_giant_sprite)}.png", FileMode.Create);
+        generatedSprite.CopyTo(output);
+    }
+
+    [TestMethod]
+    public void Should_be_able_to_generate_star_sprite()
+    {
+        CelestialBodyInitialization init = new()
+        {
+            Mass = 25
+        };
+
+        SpriteGenerator generator = new(init);
+        using var generatedSprite = generator.Generate();
+        Assert.IsNotNull(generatedSprite);
+        Assert.IsTrue(generatedSprite.CanSeek);
+        using var output = new FileStream($"{Environment.CurrentDirectory}/../../../TemporaryTestResults/{nameof(Should_be_able_to_generate_star_sprite)}.png", FileMode.Create);
         generatedSprite.CopyTo(output);
     }
 
