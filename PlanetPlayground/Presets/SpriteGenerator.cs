@@ -56,10 +56,10 @@ public class SpriteGenerator
             _ => Color.Wheat // Imposible Fallback
         };
         Pen pen = new(color);
-        graphics.DrawEllipse(pen, size / 2, size / 2, size, size);
+        graphics.DrawEllipse(pen, 0, 0, size - 1, size - 1);
         //Try texture brush?
         SolidBrush brush = new(color);
-        graphics.FillClosedCurve(brush, new Point[]{ new(size / 2, size / 2) });
+        graphics.FillClosedCurve(brush, [new(0, 0)]);
         MemoryStream stream = new();
         bmp.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
         stream.Seek(0, SeekOrigin.Begin);
