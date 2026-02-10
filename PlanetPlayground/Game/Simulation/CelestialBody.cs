@@ -52,8 +52,6 @@ public partial class CelestialBody : Node2D
 
     public override void _PhysicsProcess(double delta)
     {
-        GD.Print($"Process called for {this.GetType().Name}. Position: {Position}. Physical Position: {PhysicalPosition}. Velocity: {Velocity}. Acceleration: {Acceleration}.");
-        //Find out if we can separate drawing frame from physics frame.
         //Updating acceleration. Possibly  take an average acceleration too?
         float time = (float)delta;
         //Compare with previous acceleration too?

@@ -22,9 +22,11 @@ public class SpriteGenerationTests
         SpriteGenerator generator = new(init);
         using var generatedSprite = generator.Generate();
         Assert.IsNotNull(generatedSprite);
-        Assert.IsTrue(generatedSprite.CanSeek);
+        Assert.IsGreaterThan(0, generatedSprite.Height);
+        Assert.IsGreaterThan(0, generatedSprite.Width);
+        Assert.IsTrue(generatedSprite.Data.CanSeek);
         using var output = new FileStream($"{Environment.CurrentDirectory}/../../../TemporaryTestResults/{nameof(Should_be_able_to_generate_terrestrial_sprite)}.png", FileMode.Create);
-        generatedSprite.CopyTo(output);
+        generatedSprite.Data.CopyTo(output);
     }
 
     [TestMethod]
@@ -38,9 +40,11 @@ public class SpriteGenerationTests
         SpriteGenerator generator = new(init);
         using var generatedSprite = generator.Generate();
         Assert.IsNotNull(generatedSprite);
-        Assert.IsTrue(generatedSprite.CanSeek);
+        Assert.IsGreaterThan(0, generatedSprite.Height);
+        Assert.IsGreaterThan(0, generatedSprite.Width);
+        Assert.IsTrue(generatedSprite.Data.CanSeek);
         using var output = new FileStream($"{Environment.CurrentDirectory}/../../../TemporaryTestResults/{nameof(Should_be_able_to_generate_gas_giant_sprite)}.png", FileMode.Create);
-        generatedSprite.CopyTo(output);
+        generatedSprite.Data.CopyTo(output);
     }
 
     [TestMethod]
@@ -54,9 +58,11 @@ public class SpriteGenerationTests
         SpriteGenerator generator = new(init);
         using var generatedSprite = generator.Generate();
         Assert.IsNotNull(generatedSprite);
-        Assert.IsTrue(generatedSprite.CanSeek);
+        Assert.IsGreaterThan(0, generatedSprite.Height);
+        Assert.IsGreaterThan(0, generatedSprite.Width);
+        Assert.IsTrue(generatedSprite.Data.CanSeek);
         using var output = new FileStream($"{Environment.CurrentDirectory}/../../../TemporaryTestResults/{nameof(Should_be_able_to_generate_star_sprite)}.png", FileMode.Create);
-        generatedSprite.CopyTo(output);
+        generatedSprite.Data.CopyTo(output);
     }
 
     [TestMethod]
@@ -85,10 +91,10 @@ public class SpriteGenerationTests
         SpriteGenerator generator = new(initialization);
         using var generatedSprite1 = generator.Generate();
         Assert.IsNotNull(generatedSprite1);
-        var reader1 = new StreamReader(generatedSprite1);
+        var reader1 = new StreamReader(generatedSprite1.Data);
         using var generatedSprite2 = generator.Generate();
         Assert.IsNotNull(generatedSprite2);
-        var reader2 = new StreamReader(generatedSprite2);
+        var reader2 = new StreamReader(generatedSprite2.Data);
         Assert.AreEqual(reader1.ReadToEnd(), reader2.ReadToEnd());
     }
 
@@ -112,7 +118,9 @@ public class SpriteGenerationTests
             SpriteGenerator generator = new(initItem);
             using var generatedSprite = generator.Generate();
             Assert.IsNotNull(generatedSprite);
-            Assert.IsTrue(generatedSprite.CanSeek);
+            Assert.IsGreaterThan(0, generatedSprite.Height);
+            Assert.IsGreaterThan(0, generatedSprite.Width);
+            Assert.IsTrue(generatedSprite.Data.CanSeek);
         }
     }
 
@@ -143,7 +151,9 @@ public class SpriteGenerationTests
             SpriteGenerator generator = new(initItem);
             using var generatedSprite = generator.Generate();
             Assert.IsNotNull(generatedSprite);
-            Assert.IsTrue(generatedSprite.CanSeek);
+            Assert.IsGreaterThan(0, generatedSprite.Height);
+            Assert.IsGreaterThan(0, generatedSprite.Width);
+            Assert.IsTrue(generatedSprite.Data.CanSeek);
         }
     }
 
@@ -160,7 +170,9 @@ public class SpriteGenerationTests
             SpriteGenerator generator = new(initialization);
             using var generatedSprite = generator.Generate();
             Assert.IsNotNull(generatedSprite);
-            Assert.IsTrue(generatedSprite.CanSeek);
+            Assert.IsGreaterThan(0, generatedSprite.Height);
+            Assert.IsGreaterThan(0, generatedSprite.Width);
+            Assert.IsTrue(generatedSprite.Data.CanSeek);
         }
     }
 }

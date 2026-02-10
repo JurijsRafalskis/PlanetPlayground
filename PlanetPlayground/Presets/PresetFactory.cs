@@ -20,15 +20,11 @@ public static class PresetFactory
         var viewPort = space.GetViewportRect();
         var width = viewPort.GetWidth();
         var height = viewPort.GetHeight();
-
-        List<CelestialBody> result = new();
+        List<CelestialBody> result = [];
+        
         foreach (var preset in presetValues)
         {
-            result.Add(CelestialBodyFactory.Create(
-                new Vector2(preset.PlacementX, preset.PlacementY),
-                new Vector2(preset.VelocityX, preset.VelocityY),
-                preset.Mass
-            ));
+            result.Add(CelestialBodyFactory.Create(preset));
         }
 
         return result;

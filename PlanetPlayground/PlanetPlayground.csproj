@@ -1,19 +1,10 @@
 ﻿<Project Sdk="Godot.NET.Sdk/4.6.0">
   <PropertyGroup>
-    <TargetFramework>net10.0-windows7.0</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'android' ">net9.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
   </PropertyGroup>
   <ItemGroup>
-	  <SupportedPlatform Include="Windows" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Presets\PresetData\SimpleStar.json" />
-    <Content Include="Presets\PresetData\StarThree.json" />
-    <Content Include="Presets\PresetData\ThreeBodies.json" />
-    <Content Include="Presets\PresetData\TwoBodies.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="System.Drawing.Common" Version="10.0.2" />
+    <PackageReference Include="System.Drawing.Common" Version="10.0.3" />
   </ItemGroup>
 </Project>

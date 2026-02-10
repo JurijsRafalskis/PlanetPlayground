@@ -1,0 +1,19 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanetPlayground", "PlanetPlayground.csproj", "{361D9A04-A5C4-4337-81A4-2EF37A2A3B01}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	Debug|Any CPU = Debug|Any CPU
+	ExportDebug|Any CPU = ExportDebug|Any CPU
+	ExportRelease|Any CPU = ExportRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{361D9A04-A5C4-4337-81A4-2EF37A2A3B01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{361D9A04-A5C4-4337-81A4-2EF37A2A3B01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{361D9A04-A5C4-4337-81A4-2EF37A2A3B01}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{361D9A04-A5C4-4337-81A4-2EF37A2A3B01}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{361D9A04-A5C4-4337-81A4-2EF37A2A3B01}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{361D9A04-A5C4-4337-81A4-2EF37A2A3B01}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+	EndGlobalSection
+EndGlobal

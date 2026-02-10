@@ -26,7 +26,7 @@ public class SpriteGenerator
     /// Generates random png sprite from provided seed.
     /// </summary>
     /// <returns>Stream of created sprite</returns>
-    public Stream Generate()
+    public GeneratedSprite Generate()
     {
         //TODO: find out how to do generation outside of Windows, so target could be more global...
         //Seeding random here, to ensure same results for same seed.
@@ -39,27 +39,33 @@ public class SpriteGenerator
         };
     }
 
-    private MemoryStream DrawTerrestrial()
+    private GeneratedSprite DrawTerrestrial()
     {
         //Allows sizes between 10 and 20 for mass values from 1 to 5;
         int size =  Convert.ToInt32(Math.Floor(10 + 6.21 * Math.Log(Mass)));
         using var bmp = new Bitmap(size, size);
         using var graphics = Graphics.FromImage(bmp);
-        Color color = (Random.Next() % 3) switch
+        Color color = (Random.Next() % 4) switch
         {
             1 => Color.MediumVioletRed,
             2 => Color.ForestGreen,
             3 => Color.AliceBlue,
-            _ => Color.Wheat // Imposible Fallback
+            _ => Color.Wheat
         };
         //Pen pen = new(color);
         //Try texture brush?
         using SolidBrush brush = new(color);
         graphics.FillEllipse(brush, 0, 0, size - 1, size - 1);
-        return BmpToMemoryStream(bmp);
+
+        return new GeneratedSprite()
+        {
+            Height = size,
+            Width = size,
+            Data = BmpToMemoryStream(bmp)
+        };
     }
 
-    private MemoryStream DrawGas()
+    private GeneratedSprite DrawGas()
     {
         //Allows sizes between 25 and 70 for mass values from 5 to 20;
         int size = Convert.ToInt32(20 + 20 * Math.Cbrt(Mass - 5));
@@ -79,12 +85,17 @@ public class SpriteGenerator
             graphics.DrawImage(sliceBmp, 0, sliceCoordinates);
         }
 
-        return BmpToMemoryStream(bmp);
+        return new GeneratedSprite()
+        {
+            Height = size,
+            Width = size,
+            Data = BmpToMemoryStream(bmp)
+        };
     }
 
-    private MemoryStream DrawStar()
+    private GeneratedSprite DrawStar()
     {
-        int size = Convert.ToInt32(55 +   65 * Math.Pow(Mass - 20, 0.25));
+        int size = Convert.ToInt32(55 + 65 * Math.Pow(Mass - 20, 0.25));
         using var bmp = new Bitmap(size, size);
         using var graphics = Graphics.FromImage(bmp);
         Color primaryColor = Mass switch
@@ -103,7 +114,12 @@ public class SpriteGenerator
         gradientBrush.CenterColor = primaryColor;
         gradientBrush.SurroundColors = [secondaryColor];
         graphics.FillEllipse(gradientBrush, 0, 0, size - 1, size - 1);
-        return BmpToMemoryStream(bmp);
+        return new GeneratedSprite()
+        {
+            Height = size,
+            Width = size,
+            Data = BmpToMemoryStream(bmp)
+        };
     }
 
     private Color GetGasColor(int number) => number switch
