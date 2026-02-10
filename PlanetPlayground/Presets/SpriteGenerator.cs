@@ -14,8 +14,9 @@ public class SpriteGenerator
 
     public SpriteGenerator(CelestialBodyInitialization initialData)
     {
-        Seed = initialData.SpriteSeed ?? Guid.NewGuid().ToString();
+        if (initialData == null) throw new ArgumentNullException(nameof(initialData));
         Mass = initialData.Mass > 0 ? initialData.Mass : throw new ArgumentOutOfRangeException(nameof(initialData), $"{nameof(initialData.Mass)} is either 0 or negative.");
+        Seed = initialData.SpriteSeed ?? Guid.NewGuid().ToString();
     }
 
     /// <summary>
@@ -25,7 +26,6 @@ public class SpriteGenerator
     public Stream Generate()
     {
         //TODO: find out how to do generation outside of Windows, so target could be more global...
-
         //Seeding random here, to ensure same results for same seed.
         Random = new(Seed.GetHashCode());
         if (Mass < 5)
@@ -48,17 +48,17 @@ public class SpriteGenerator
         int size =  Convert.ToInt32(Math.Floor(10 + 6.21 * Math.Log(Mass)));
         using var bmp = new Bitmap(size, size);
         using var graphics = Graphics.FromImage(bmp);
-        Color color = (Random.NextInt64() % 3) switch
+        Color color = (Random.Next() % 3) switch
         {
             1 => Color.MediumVioletRed,
             2 => Color.ForestGreen,
             3 => Color.AliceBlue,
             _ => Color.Wheat // Imposible Fallback
         };
-        Pen pen = new(color);
-        graphics.DrawEllipse(pen, 0, 0, size - 1, size - 1);
-        //Try texture brush?
+        //Pen pen = new(color);
         SolidBrush brush = new(color);
+        graphics.FillEllipse(brush, 0, 0, size - 1, size - 1);
+        //Try texture brush?
         graphics.FillClosedCurve(brush, [new(0, 0)]);
         MemoryStream stream = new();
         bmp.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
