@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://pvus6w3trbe5" path="res://Game/Simulation/CelestialBody.cs" id="1_ii8pb"]
 [ext_resource type="Texture2D" uid="uid://di31t1f33fa8e" path="res://icon.svg" id="2_sydlb"]
+[ext_resource type="Script" uid="uid://blnsixc74u0wp" path="res://Game/Simulation/CelestialBodySprite.cs" id="3_sydlb"]
 
 [node name="SpaceBody" type="Node2D" unique_id=733661162]
 script = ExtResource("1_ii8pb")
@@ -10,3 +11,4 @@ script = ExtResource("1_ii8pb")
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_sydlb")
 flip_v = true
+script = ExtResource("3_sydlb")

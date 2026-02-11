@@ -24,8 +24,9 @@ public static class CelestialBodyFactory
         using var sprite = generator.Generate();
         var spriteClass = body.FindChild(nameof(CelestialBodySprite)) as CelestialBodySprite;
         //Do we need to dispose of image?
-        using Image image = new();
-        image.LoadJpgFromBuffer(sprite.Data.ToArray());
+        Image image = Image.CreateEmpty(sprite.Width, sprite.Height, false, Image.Format.Rgb8);
+        var buffer = sprite.Data.ToArray();
+        var error = image.LoadJpgFromBuffer(buffer);
         spriteClass.Texture = ImageTexture.CreateFromImage(image);
         return body;
     }
