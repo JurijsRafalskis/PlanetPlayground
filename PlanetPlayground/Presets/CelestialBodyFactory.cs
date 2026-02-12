@@ -1,6 +1,8 @@
 using Godot;
+using Godot.NativeInterop;
 using PlanetPlayground.Game.Simulation;
 using System;
+using System.Buffers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,10 +26,16 @@ public static class CelestialBodyFactory
         using var sprite = generator.Generate();
         var spriteClass = body.FindChild(nameof(CelestialBodySprite)) as CelestialBodySprite;
         //Do we need to dispose of image?
-        Image image = Image.CreateEmpty(sprite.Width, sprite.Height, false, Image.Format.Rgb8);
+        //Image image = Image.CreateEmpty(sprite.Width, sprite.Height, false, Image.Format.Rgba16);
+        Image image = new ();
         var buffer = sprite.Data.ToArray();
+        /*ArrayBufferWriter<byte[]> writer = new (buffer.Length);
+        writer.*/
         var error = image.LoadJpgFromBuffer(buffer);
-        spriteClass.Texture = ImageTexture.CreateFromImage(image);
+        if(error == Error.Ok)
+        {
+            spriteClass.Texture = ImageTexture.CreateFromImage(image);
+        }
         return body;
     }
 
