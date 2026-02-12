@@ -1,7 +1,7 @@
 using Godot;
-using PlanetPlayground.Presets;
-using System;
-using System.Linq;
+using PlanetPlayground.Game;
+
+namespace PlanetPlayground.Game.Menu.MainMenuOptions;
 
 public partial class StartSimulation : Button
 {
@@ -14,7 +14,7 @@ public partial class StartSimulation : Button
     public override void _Pressed()
     {
 		//Initializing new game
-		var mainLoop = FindParent(nameof(MainLoop)) as MainLoop;
+		var mainLoop = FindParent(nameof(GameLoop)) as GameLoop;
 		mainLoop.HideMainMenu();
 		mainLoop.ShowSelectionMenu();
     }

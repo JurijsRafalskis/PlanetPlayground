@@ -1,5 +1,6 @@
 using Godot;
-using System;
+
+namespace PlanetPlayground.Game.Menu.MainMenuOptions;
 
 public partial class Exit : Button
 {

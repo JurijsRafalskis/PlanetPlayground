@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://di8fdogiublkr"]
+
+[ext_resource type="Script" uid="uid://bmhemnffrdivc" path="res://Game/GameLoop.cs" id="1_eo50x"]
+[ext_resource type="PackedScene" uid="uid://cu45ybebdqqlq" path="res://Game/Menu/MainMenu.tscn" id="2_jghdj"]
+[ext_resource type="Script" uid="uid://bwb1upedn7gqp" path="res://Game/Menu/MainMenu.cs" id="3_2fmi8"]
+[ext_resource type="PackedScene" uid="uid://bfqvjq80a6q2u" path="res://Game/Simulation/Space.tscn" id="4_miwr0"]
+[ext_resource type="PackedScene" uid="uid://d1oddrjhm6vrv" path="res://Game/Menu/PresetSelectionMenu.tscn" id="5_ecl3g"]
+[ext_resource type="Script" uid="uid://d0lp7uqccd3kt" path="res://Game/Menu/PresetSelectionMenu.cs" id="6_tupsn"]
+
+[node name="GameLoop" type="Node" unique_id=1217998456]
+script = ExtResource("1_eo50x")
+
+[node name="MainMenu" parent="." unique_id=457876770 instance=ExtResource("2_jghdj")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.5
+offset_top = -50.5
+offset_right = 66.5
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_2fmi8")
+
+[node name="Space" parent="." unique_id=1462972160 instance=ExtResource("4_miwr0")]
+
+[node name="PresetSelectionMenu" parent="." unique_id=282312046 instance=ExtResource("5_ecl3g")]
+alignment = 1
+script = ExtResource("6_tupsn")

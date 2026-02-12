@@ -1,10 +1,11 @@
 using Godot;
 using PlanetPlayground.Configuration;
 using PlanetPlayground.Extensions;
-using System;
-using System.Diagnostics;
+using PlanetPlayground.Game.Menu;
 
-public partial class MainLoop : Node
+namespace PlanetPlayground.Game;
+
+public partial class GameLoop : Node //Do not name this as MainLoop, that will conflict with Godot inbuild class.
 {
 	private MainMenu Menu { get; set; }
 	private PresetSelectionMenu SelectionMenu { get; set; }

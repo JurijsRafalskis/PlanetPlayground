@@ -1,8 +1,9 @@
 using Godot;
-using PlanetPlayground.Configuration;
+using PlanetPlayground.Game.Simulation;
 using PlanetPlayground.Presets;
-using System;
 using System.Linq;
+
+namespace PlanetPlayground.Game.Menu;
 
 public partial class PresetSelectionMenu : VBoxContainer
 {
@@ -12,7 +13,7 @@ public partial class PresetSelectionMenu : VBoxContainer
 	public override void _Ready()
 	{
 		//Creating neccessary preset buttons.
-		foreach(var preset in Presets.ExistingPresets)
+		foreach(var preset in PlanetPlayground.Configuration.Presets.ExistingPresets)
 		{
 			var button = PresetSelectionButtonScene.Instantiate<PresetSelectionButton>();
 			button.PresetName = preset.PresetName;
@@ -26,7 +27,7 @@ public partial class PresetSelectionMenu : VBoxContainer
 
 	public void InitializeSimulation(string presetName)
 	{
-		var mainLoop = GetParent<MainLoop>();
+		var mainLoop = GetParent<GameLoop>();
         var space = mainLoop.GetNode<Space>(nameof(Space));
         mainLoop.HideSelectionMenu();
 		mainLoop.HideMainMenu();

@@ -1,6 +1,6 @@
 using Godot;
-using PlanetPlayground.Extensions;
-using System;
+
+namespace PlanetPlayground.Game.Menu;
 
 public partial class MainMenu : VBoxContainer
 {

@@ -1,9 +1,9 @@
 using Godot;
 using PlanetPlayground.Configuration;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+
+namespace PlanetPlayground.Game.Simulation;
 
 public partial class CelestialBody : Node2D
 {
@@ -28,7 +28,7 @@ public partial class CelestialBody : Node2D
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready() {
-        _physiscsScalingFactor = (FindParent(nameof(MainLoop)) as MainLoop).PhysicalCoordinateScalingFactor;
+        _physiscsScalingFactor = (FindParent(nameof(GameLoop)) as GameLoop).PhysicalCoordinateScalingFactor;
 #pragma warning disable CA2245 // Recalculating real position.
         PhysicalPosition = PhysicalPosition;
 #pragma warning restore CA2245

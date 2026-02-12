@@ -1,5 +1,6 @@
 using Godot;
-using System;
+
+namespace PlanetPlayground.Game.Simulation;
 
 public partial class CelestialBodySprite : Sprite2D
 {

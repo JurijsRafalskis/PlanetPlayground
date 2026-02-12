@@ -1,5 +1,6 @@
 using Godot;
-using System;
+
+namespace PlanetPlayground.Game.Simulation;
 
 public partial class Space : Node2D
 {
