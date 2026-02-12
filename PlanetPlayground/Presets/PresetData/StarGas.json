@@ -1,0 +1,16 @@
+[
+  {
+    "PlacementX": 5000,
+    "PlacementY": 4000,
+    "VelocityX": 0,
+    "VelocityY": 0,
+    "Mass": 25
+  },
+  {
+    "PlacementX": 7500,
+    "PlacementY": 4000,
+    "VelocityX": 0,
+    "VelocityY": -400,
+    "Mass": 15
+  }
+]
