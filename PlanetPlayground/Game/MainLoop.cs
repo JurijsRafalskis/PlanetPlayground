@@ -2,6 +2,7 @@ using Godot;
 using PlanetPlayground.Configuration;
 using PlanetPlayground.Extensions;
 using System;
+using System.Diagnostics;
 
 public partial class MainLoop : Node
 {
@@ -15,6 +16,7 @@ public partial class MainLoop : Node
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
+		//Debugger.Launch();
 		SetScaling();
         Menu = FindChild(nameof(MainMenu)) as MainMenu;
 		SelectionMenu = FindChild(nameof(PresetSelectionMenu)) as PresetSelectionMenu;

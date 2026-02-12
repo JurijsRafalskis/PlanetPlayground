@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Net.NetworkInformation;
@@ -138,17 +139,17 @@ public class SpriteGenerator
         _ => Color.BlueViolet
     };
 
-    private MemoryStream BmpToMemoryStream(Bitmap image)
+    private static MemoryStream BmpToMemoryStream(Bitmap image)
     {
         MemoryStream stream = new();
-        image.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+        image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
         stream.Seek(0, SeekOrigin.Begin);
         return stream;
     }
 
     private List<int> GetNonRepeatingRandomNumbers(int max, int count)
     {
-        HashSet<int> result = new();
+        HashSet<int> result = [];
         do
         {
             int random = Random.Next() % max;
