@@ -142,7 +142,7 @@ public class SpriteGenerator
     private static MemoryStream BmpToMemoryStream(Bitmap image)
     {
         MemoryStream stream = new();
-        image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
+        image.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
         stream.Seek(0, SeekOrigin.Begin);
         return stream;
     }

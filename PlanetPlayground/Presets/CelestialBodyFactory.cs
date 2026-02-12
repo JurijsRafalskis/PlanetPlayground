@@ -31,10 +31,12 @@ public static class CelestialBodyFactory
         var buffer = sprite.Data.ToArray();
         /*ArrayBufferWriter<byte[]> writer = new (buffer.Length);
         writer.*/
-        var error = image.LoadJpgFromBuffer(buffer);
+        var error = image.LoadPngFromBuffer(buffer);
         if(error == Error.Ok)
         {
-            spriteClass.Texture = ImageTexture.CreateFromImage(image);
+            var texture = ImageTexture.CreateFromImage(image);
+            texture.ResourceLocalToScene = true;
+            spriteClass.Texture = texture;
         }
         return body;
     }
