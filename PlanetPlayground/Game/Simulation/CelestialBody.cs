@@ -8,7 +8,7 @@ namespace PlanetPlayground.Game.Simulation;
 public partial class CelestialBody : Node2D
 {
     //Recache this on changes?
-    private float _physiscsScalingFactor;
+    private float _physiscsScalingFactor = 1;
     private Vector2 _physicalPosition;
 
     [Export]
@@ -31,8 +31,9 @@ public partial class CelestialBody : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready() {
         Parent = GetParent<Space>();
-        _physiscsScalingFactor = (FindParent(nameof(GameLoop)) as GameLoop).PhysicalCoordinateScalingFactor;
-#pragma warning disable CA2245 // Recalculating real position.
+        //Is this reasonable, or should we just use the parent directly?
+        _physiscsScalingFactor = Parent.PhysicalCoordinateScalingFactor;
+#pragma warning disable CA2245 // Forcing recalculation of the real position.
         PhysicalPosition = PhysicalPosition;
 #pragma warning restore CA2245
         //This will recalcculate acceleration
@@ -53,19 +54,12 @@ public partial class CelestialBody : Node2D
     }
 
     public void RecalculateAcceleration() => Acceleration = CalculateAcceleration();
-
-    private IEnumerable<CelestialBody> GetExistingSpaceBodies()
-	{
-        //Type operations are expensive? Maybe get some kind of bus or explicit list in the parent?
-        return Parent.GetChildren().OfType<CelestialBody>();
-	}
 	
 	private Vector2 CalculateAcceleration()
 	{
 		//Itterate through all of the existing Celestial Bodies.
-		var bodies = GetExistingSpaceBodies();
 		Vector2 accumulate = Vector2.Zero;
-		foreach(var body in bodies)
+		foreach(var body in Parent.CelestialBodies)
 		{
 			//Skipping this body by reference.
 			if (body == this) continue;

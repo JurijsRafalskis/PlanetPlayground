@@ -9,16 +9,12 @@ public partial class GameLoop : Node //Do not name this as MainLoop, that will c
 {
 	private MainMenu Menu { get; set; }
 	private PresetSelectionMenu SelectionMenu { get; set; }
-	/// <summary>
-	/// The factor for transforming from physics coordinates to viewport coordinates.
-	/// </summary>
-	public float PhysicalCoordinateScalingFactor { get; set; }
+
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
 		//Debugger.Launch();
-		SetScaling();
         Menu = FindChild(nameof(MainMenu)) as MainMenu;
 		SelectionMenu = FindChild(nameof(PresetSelectionMenu)) as PresetSelectionMenu;
 		HideSelectionMenu();
@@ -60,14 +56,5 @@ public partial class GameLoop : Node //Do not name this as MainLoop, that will c
 	{
         if (FindChild(nameof(PresetSelectionMenu)) is PresetSelectionMenu) return;
         AddChild(SelectionMenu);
-    }
-
-	private void SetScaling()
-	{
-        var viewport = GetViewport();
-        var rectangle = viewport.GetVisibleRect();
-		var width = rectangle.GetWidth();
-		PhysicalCoordinateScalingFactor = width / PhysicsConstants.MaxVisibleX;
-		GD.Print($"New {nameof(PhysicalCoordinateScalingFactor)} is {PhysicalCoordinateScalingFactor}");
     }
 }

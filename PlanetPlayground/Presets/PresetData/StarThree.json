@@ -9,22 +9,22 @@
   {
     "PlacementX": 7500,
     "PlacementY": 6000,
-    "VelocityX": 150,
+    "VelocityX": 450,
     "VelocityY": 0,
     "Mass": 1
   },
   {
     "PlacementX": 2500,
     "PlacementY": 2000,
-    "VelocityX": 150,
-    "VelocityY": -150,
+    "VelocityX": 350,
+    "VelocityY": -350,
     "Mass": 1
   },
   {
     "PlacementX": 7500,
     "PlacementY": 4000,
     "VelocityX": 0,
-    "VelocityY": -150,
+    "VelocityY": -550,
     "Mass": 1
   }
 ]
