@@ -37,7 +37,7 @@ public partial class CelestialBody : Node2D
         PhysicalPosition = PhysicalPosition;
 #pragma warning restore CA2245
         //This will recalcculate acceleration
-        Parent.RegisterChild(this);
+        Parent.RegisterCelestialObject(this);
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -30,7 +30,7 @@ public partial class Space : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta) { }
 
-	public void ClearChildren()
+	public void ClearChildCelestialObjects()
 	{
         var exisitngChildren = _bodies;
         foreach (var child in exisitngChildren)
@@ -41,7 +41,7 @@ public partial class Space : Node2D
         _bodies.Clear();
     }
 
-    public void RegisterChild(CelestialBody body) 
+    public void RegisterCelestialObject(CelestialBody body) 
 	{
 		if (_bodies.Contains(body)) return;
 		_bodies.Add(body);
