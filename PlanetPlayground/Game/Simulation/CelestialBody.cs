@@ -7,8 +7,6 @@ namespace PlanetPlayground.Game.Simulation;
 
 public partial class CelestialBody : Node2D
 {
-    //Recache this on changes?
-    private float _physiscsScalingFactor = 1;
     private Vector2 _physicalPosition;
 
     [Export]
@@ -17,8 +15,10 @@ public partial class CelestialBody : Node2D
 	public Vector2 PhysicalPosition { 
 		get => _physicalPosition; 
 		set {
-            Position = value * _physiscsScalingFactor;
-            _physicalPosition = value; 
+            _physicalPosition = value;
+            //How strong is the performance impact of null checks and fallbacks? Theese properties are hit very often.
+            //Might be better to have those as properties of the class itself, updated by the parent.
+            Position = _physicalPosition * (Parent?.PhysicalCoordinateScalingFactor ?? 1) + (Parent?.PositionOffset ?? Vector2.Zero);
 		} 
 	}
     [Export]
@@ -32,7 +32,6 @@ public partial class CelestialBody : Node2D
     public override void _Ready() {
         Parent = GetParent<Space>();
         //Is this reasonable, or should we just use the parent directly?
-        _physiscsScalingFactor = Parent.PhysicalCoordinateScalingFactor;
 #pragma warning disable CA2245 // Forcing recalculation of the real position.
         PhysicalPosition = PhysicalPosition;
 #pragma warning restore CA2245

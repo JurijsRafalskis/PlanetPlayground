@@ -11,4 +11,5 @@ public static class PhysicsConstants
     public const float GravitationalConstant = 30000000;
     public const float MaxVisibleX = 10000;
     public const int SizeScaleFactor = 4;
+    public const int ScrollSpeed = 500;
 }
