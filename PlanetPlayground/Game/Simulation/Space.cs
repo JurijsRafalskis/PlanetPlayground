@@ -27,13 +27,12 @@ public partial class Space : Node2D
         }
     }
 
-    private Vector2 _accumulatedPositionOffset = Vector2.Zero;
-
     private readonly ConcurrentBag<CelestialBody> _bodies = [];
     private CoordinatesLabel _coordinates;
     private bool _coordinatesWritten = true; 
     private Vector2 _currentPositionOffset = new ();
 
+    private bool _upPressed = false, _downPressed = false, _leftPressed = false, _rightPressed = false;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready() {
@@ -45,12 +44,10 @@ public partial class Space : Node2D
     {
         if (@event is not InputEventKey eventKey) return;
         if (!eventKey.Pressed) return;
-        Vector2 accumulate = Vector2.Zero;
-        if (eventKey.IsAction(InputMapping.Up)) accumulate += Vector2.Up;
-        if (eventKey.IsAction(InputMapping.Down)) accumulate += Vector2.Down;
-        if (eventKey.IsAction(InputMapping.Left)) accumulate += Vector2.Left;
-        if (eventKey.IsAction(InputMapping.Right)) accumulate += Vector2.Right;
-        _accumulatedPositionOffset = accumulate;
+        _upPressed |= eventKey.IsAction(InputMapping.Up);
+        _downPressed |= eventKey.IsAction(InputMapping.Down);
+        _leftPressed |= eventKey.IsAction(InputMapping.Left);
+        _rightPressed |= eventKey.IsAction(InputMapping.Right);
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -61,9 +58,15 @@ public partial class Space : Node2D
 
     public override void _PhysicsProcess(double delta)
     {
+        //Keypresses invered.
+        var accumulatedOffset = 
+            (_upPressed ? Vector2.Down : Vector2.Zero) + 
+            (_downPressed ? Vector2.Up : Vector2.Zero) + 
+            (_leftPressed ? Vector2.Right : Vector2.Zero) + 
+            (_rightPressed ? Vector2.Left : Vector2.Zero);
         //Should we round this here?
-        PositionOffset +=  _accumulatedPositionOffset * (float)(PhysicsConstants.ScrollSpeed * delta);
-        _accumulatedPositionOffset = Vector2.Zero;
+        PositionOffset += accumulatedOffset * (float)(PhysicsConstants.ScrollSpeed * delta);
+        _upPressed = _downPressed = _leftPressed = _rightPressed = false;
     }
 
 	public void ClearChildCelestialObjects()
