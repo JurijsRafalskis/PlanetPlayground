@@ -7,10 +7,17 @@
     "Mass": 25
   },
   {
+    "PlacementX": 8000,
+    "PlacementY": 4000,
+    "VelocityX": 0,
+    "VelocityY": 550,
+    "Mass": 12
+  },
+  {
     "PlacementX": 7000,
     "PlacementY": 4000,
     "VelocityX": 0,
-    "VelocityY": -700,
-    "Mass": 15
+    "VelocityY": -600,
+    "Mass": 2
   }
 ]

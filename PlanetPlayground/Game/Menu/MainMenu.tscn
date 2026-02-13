@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cl2hw5kbhi2b8" path="res://Game/Menu/MainMenuOptions/StartSimulation.tscn" id="1_fiaye"]
 [ext_resource type="PackedScene" uid="uid://cqtmogbgkilrc" path="res://Game/Menu/MainMenuOptions/Options.tscn" id="2_ltk7b"]
 [ext_resource type="PackedScene" uid="uid://bynpbscys6arb" path="res://Game/Menu/MainMenuOptions/Exit.tscn" id="3_hxc3x"]
+[ext_resource type="Script" uid="uid://wmi0gyyodqkp" path="res://Game/Menu/MainMenuOptions/Exit.cs" id="4_ltk7b"]
 
 [node name="MainMenu" type="VBoxContainer" unique_id=887284782]
 offset_right = 133.0
@@ -16,3 +17,4 @@ layout_mode = 2
 
 [node name="Exit" parent="." unique_id=1523225687 instance=ExtResource("3_hxc3x")]
 layout_mode = 2
+script = ExtResource("4_ltk7b")

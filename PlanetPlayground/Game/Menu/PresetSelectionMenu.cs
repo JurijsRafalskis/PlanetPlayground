@@ -31,12 +31,7 @@ public partial class PresetSelectionMenu : VBoxContainer
         var space = mainLoop.GetNode<Space>(nameof(Space));
         mainLoop.HideSelectionMenu();
 		mainLoop.HideMainMenu();
-        var exisitngChildren = space.GetChildren().OfType<CelestialBody>();
-        foreach (var child in exisitngChildren)
-        {
-            space.RemoveChild(child);
-            child.QueueFree();
-        }
+		space.ClearChildren();
         var preset = PresetFactory.CreateFromPreset(space, presetName);
         foreach (var body in preset)
         {

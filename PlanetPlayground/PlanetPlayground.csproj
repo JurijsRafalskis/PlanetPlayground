@@ -5,6 +5,14 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="Presets\PresetData\SimpleStar.json" />
+    <Content Include="Presets\PresetData\StarGas.json" />
+    <Content Include="Presets\PresetData\StarGiantMoon.json" />
+    <Content Include="Presets\PresetData\StarThree.json" />
+    <Content Include="Presets\PresetData\ThreeBodies.json" />
+    <Content Include="Presets\PresetData\TwoBodies.json" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="System.Drawing.Common" Version="10.0.3" />
   </ItemGroup>
 </Project>

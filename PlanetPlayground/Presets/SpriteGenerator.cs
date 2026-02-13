@@ -1,3 +1,4 @@
+using PlanetPlayground.Configuration;
 using PlanetPlayground.Game.Simulation;
 using System;
 using System.Collections.Generic;
@@ -43,7 +44,7 @@ public class SpriteGenerator
     private GeneratedSprite DrawTerrestrial()
     {
         //Allows sizes between 10 and 20 for mass values from 1 to 5;
-        int size =  Convert.ToInt32(Math.Floor(10 + 6.21 * Math.Log(Mass)));
+        int size = PhysicsConstants.SizeScaleFactor * Convert.ToInt32(Math.Floor(10 + 6.21 * Math.Log(Mass)));
         using var bmp = new Bitmap(size, size);
         using var graphics = Graphics.FromImage(bmp);
         Color color = (Random.Next() % 4) switch
@@ -69,7 +70,7 @@ public class SpriteGenerator
     private GeneratedSprite DrawGas()
     {
         //Allows sizes between 25 and 70 for mass values from 5 to 20;
-        int size = Convert.ToInt32(20 + 20 * Math.Cbrt(Mass - 5));
+        int size = PhysicsConstants.SizeScaleFactor * Convert.ToInt32(20 + 20 * Math.Cbrt(Mass - 5));
         int sliceCount = 3 + (Random.Next() % 6); //Add possiblity of monocolor?
         using var bmp = new Bitmap(size, size);
         using var graphics = Graphics.FromImage(bmp);
@@ -96,7 +97,7 @@ public class SpriteGenerator
 
     private GeneratedSprite DrawStar()
     {
-        int size = Convert.ToInt32(55 + 65 * Math.Pow(Mass - 20, 0.25));
+        int size = PhysicsConstants.SizeScaleFactor * Convert.ToInt32(55 + 65 * Math.Pow(Mass - 20, 0.25));
         using var bmp = new Bitmap(size, size);
         using var graphics = Graphics.FromImage(bmp);
         Color primaryColor = Mass switch

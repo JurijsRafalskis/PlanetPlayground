@@ -26,36 +26,28 @@ public partial class CelestialBody : Node2D
     [Export]
     public Vector2 Acceleration { get; set; }
 
+    private Space Parent { get; set; }
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready() {
+        Parent = GetParent<Space>();
         _physiscsScalingFactor = (FindParent(nameof(GameLoop)) as GameLoop).PhysicalCoordinateScalingFactor;
 #pragma warning disable CA2245 // Recalculating real position.
         PhysicalPosition = PhysicalPosition;
 #pragma warning restore CA2245
-
-        //Might be neccessary to call full recalc of those on creation?
-        Acceleration = CalculateAcceleration();
-		//Introduction of new Celestial body requires full reclculation of all in moment accelerations.
-        foreach (var item in GetExistingSpaceBodies())
-        {
-			item.RecalculateAcceleration();
-        }
+        //This will recalcculate acceleration
+        Parent.RegisterChild(this);
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta) {
-        /*var texture = new ImageTexture();
-        texture.SetImage();
-        var image = new Image();
-        image.loa*/
-    }
+	public override void _Process(double delta) {}
 
     public override void _PhysicsProcess(double delta)
     {
         //Updating acceleration. Possibly  take an average acceleration too?
         float time = (float)delta;
         //Compare with previous acceleration too?
-        Acceleration = CalculateAcceleration();
+        RecalculateAcceleration();
         PhysicalPosition += (Velocity + Acceleration * time / 2) * time;
         Velocity = Velocity + Acceleration * time;
     }
@@ -65,7 +57,7 @@ public partial class CelestialBody : Node2D
     private IEnumerable<CelestialBody> GetExistingSpaceBodies()
 	{
         //Type operations are expensive? Maybe get some kind of bus or explicit list in the parent?
-        return GetParent<Space>().GetChildren().OfType<CelestialBody>();
+        return Parent.GetChildren().OfType<CelestialBody>();
 	}
 	
 	private Vector2 CalculateAcceleration()

@@ -32,8 +32,9 @@ public partial class GameLoop : Node //Do not name this as MainLoop, that will c
 		//Returning menu if the escape is pressed.
         if (@event is InputEventKey eventKey && eventKey.Pressed && eventKey.Keycode == Key.Escape)
 		{
-			HideSelectionMenu();
+            HideSelectionMenu();
             ShowMainMenu();
+			GetViewport().SetInputAsHandled();
 		}
     }
 

@@ -26,6 +26,7 @@ public static class Presets
         new ("Three bodies", "ThreeBodies"),
         new ("Star and body", "SimpleStar"),
         new ("Star and three bodies", "StarThree"),
-        new ("Star and gas giant", "StarGas")
+        new ("Star and gas giant", "StarGas"),
+        new ("Star, gas giant and terrestrial", "StarGiantMoon")
     };
 }
